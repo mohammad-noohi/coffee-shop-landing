@@ -1,10 +1,21 @@
-# Fix some bugs
+# Demo
 
-1. مشکلات توی ساید بار ها توی سبد خرید و موبایل منو
+click on link to see project online
 
-2. وقتی توی زیرمنو توی موبایل منو کلیک میشه کلش بسته میشه در صورتی که فقط وقتی رو اون المان کلیک میشه باید این اتفاق بیوفته
+<a style="scale(0.1)" href="https://mohammad-noohi.github.io/coffe-shop-landing/">
+ Demo
+</a>
 
-# Final Build for production phase
+<br>
 
-Optimize for production
-just write your build script command but at the end use --minify instead of --watch
+# 🛠️ Techs
+
+HTML , CSS , JS ,
+
+# Library
+
+- Tailwind
+
+# Features
+
+- light and dark theme

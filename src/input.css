@@ -1,0 +1,272 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Dana Font Face */
+  @font-face {
+    font-family: "Dana"; /* 400 */
+    src: local("Dana"), url("../fonts/Dana/woff2/DanaFaNum-Regular.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Dana Medium"; /* 500 */
+    src: local("Dana Medium"), url("../fonts/Dana/woff2/DanaFaNum-Medium.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Dana DemiBold"; /* 600 */
+    src: local("Dana DemiBold"), url("../fonts/Dana/woff2/DanaFaNum-DemiBold.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  /* Morabba Font Face */
+  @font-face {
+    font-family: "Morabba Light"; /* 300 */
+    src: local("MorabbaLight"), url("../fonts/Morabba/woff2/Morabba-Light.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Morabba Medium"; /* 500 */
+    src: local("MorabbaMedium"), url("../fonts/Morabba/woff2/Morabba-Medium.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Morabba Bold"; /* 700 */
+    src: local("MorabbaBold"), url("../fonts/Morabba/woff2/Morabba-Bold.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  /* ---- Smooth Scroll ---- */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /*---- Custome ScrollBar ----*/
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background: #f1f1f18d;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffff;
+  }
+}
+
+@layer components {
+  /*----- Common -----*/
+  .section__title {
+    @apply font-MorabbaMedium text-2xl text-zinc-700 md:text-5xl dark:text-white;
+  }
+
+  .section__subtitle {
+    @apply mt-0.5 inline-block font-MorabbaLight text-lg text-zinc-700 md:mt-1.5 md:text-3xl dark:text-white;
+  }
+
+  .section__link {
+    @apply flex h-10 items-center rounded-md pl-1 pr-3 text-base tracking-thightest text-orange-300 transition-colors md:gap-x-1 md:text-xl md:hover:bg-orange-200/20;
+  }
+
+  /*----- Products Section -----*/
+  @media screen and (min-width: 1280px) {
+    .products-section {
+      background: linear-gradient(rgba(243, 244, 246, 0.65), rgba(243, 244, 246, 0.65)), url("../images/body-bg.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: top center;
+    }
+
+    html.dark .products-section {
+      background-image: url("../images/body-bg.png");
+    }
+  }
+
+  /*----- MobileOffcanvas -----*/
+  .mobile-offcanvas--active {
+    @apply right-0 !important;
+  }
+
+  /*----- mobile submenu -----*/
+  /* فقط ایتم هایی که زیر منو دارند اون ایکن رو به بالا نمایش داده بشه */
+  .mobile-menu li:has(.mobile-menu__submenu) .angle-icon {
+    display: block;
+  }
+
+  /* اگر اون ایتمی که زیر منو داره روش کلیک شد و این کلاس بهش اضافه شد این استایل به خود ایتم و ایکن درونش اضافه بشه */
+  .mobile-menu li.mobile-menu__item--active:has(.mobile-menu__submenu) {
+    @apply text-orange-300;
+  }
+
+  /* چرخش ایکن موقع نمایش زیرمنو */
+  .mobile-menu li.mobile-menu__item--active:has(.mobile-menu__submenu) .angle-icon {
+    @apply rotate-180;
+  }
+
+  /* وقتی روی زیر منوی توی منو موبایل کلیک شد این کلاس که این استایل هارو داره اعمال بشه */
+  .mobile-menu li:has(.mobile-menu__submenu) .submenu__link--active {
+    @apply flex items-center gap-x-1.5 text-orange-300;
+  }
+
+  /* نمایش دایره نارنجی در ایتم فعال درون زیرمنو */
+  .mobile-menu li:has(.mobile-menu__submenu) .submenu__link--active::before {
+    content: "";
+    @apply block size-2 rounded-full bg-orange-300;
+  }
+
+  /* نمایش زیر منو موقع کلیک روی لینک مربوطه */
+  .mobile-menu__submenu--active {
+    @apply h-auto overflow-visible pt-4 !important;
+  }
+
+  /*----- Mobile Cart -----*/
+  .mobile-cart--active {
+    left: 0;
+  }
+
+  /*----- Overlay -----*/
+  .overlay {
+    @apply invisible fixed inset-0 z-10 h-screen w-screen bg-black/40 opacity-0 md:hidden;
+  }
+
+  /*----- Stars Rate Product -----*/
+  .overlay--active {
+    @apply visible opacity-100;
+  }
+
+  .stars-rate[data-product-rate="1"] svg:nth-child(1) {
+    @apply text-yellow-400;
+  }
+
+  .stars-rate[data-product-rate="2"] svg:nth-child(1),
+  .stars-rate[data-product-rate="2"] svg:nth-child(2) {
+    @apply text-yellow-400;
+  }
+
+  .stars-rate[data-product-rate="3"] svg:nth-child(1),
+  .stars-rate[data-product-rate="3"] svg:nth-child(2),
+  .stars-rate[data-product-rate="3"] svg:nth-child(3) {
+    @apply text-yellow-400;
+  }
+
+  .stars-rate[data-product-rate="4"] svg:nth-child(1),
+  .stars-rate[data-product-rate="4"] svg:nth-child(2),
+  .stars-rate[data-product-rate="4"] svg:nth-child(3),
+  .stars-rate[data-product-rate="4"] svg:nth-child(4) {
+    @apply text-yellow-400;
+  }
+
+  .stars-rate[data-product-rate="5"] svg:nth-child(1),
+  .stars-rate[data-product-rate="5"] svg:nth-child(2),
+  .stars-rate[data-product-rate="5"] svg:nth-child(3),
+  .stars-rate[data-product-rate="5"] svg:nth-child(4),
+  .stars-rate[data-product-rate="5"] svg:nth-child(5) {
+    @apply text-yellow-400;
+  }
+
+  /*----- Unavailble Product -----*/
+  .product--unavailble .unavailble-text {
+    @apply block;
+  }
+
+  .product--unavailble .offer-text,
+  .product--unavailble .price-text {
+    @apply hidden;
+  }
+
+  /*----- Offer Product -----*/
+  .offer-text {
+    @apply relative;
+  }
+
+  .offer-text::before {
+    content: "";
+    @apply absolute inset-0 m-auto block h-px w-full bg-red-500;
+  }
+
+  .product--offer .offer-text {
+    @apply inline-flex;
+  }
+
+  .product--offer .product-offer-badge {
+    @apply flex;
+  }
+
+  /* Category Section */
+  .category-banner--right {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.6) 33.85%, rgba(0, 0, 0, 0.1) 100%), url("../images/categories/category-right.jpg");
+    @apply bg-cover bg-center bg-no-repeat;
+  }
+
+  .category-banner--left {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.6) 33.85%, rgba(0, 0, 0, 0.1) 100%), url("../images/categories/category-left.jpg");
+    @apply bg-cover bg-center bg-no-repeat;
+  }
+
+  /* Swiper Navigation */
+  .swiper-button-prev-custome,
+  .swiper-button-next-custome {
+    @apply flex-center size-9 rounded-full bg-white shadow-normal transition-colors md:size-11 dark:bg-zinc-700 dark:text-white;
+  }
+
+  /* Disable Navigation Style */
+  .swiper-button-next-custome.swiper-button-disabled,
+  .swiper-button-prev-custome.swiper-button-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* Navigation Hover Style ( when is not disabled ) */
+  .swiper-button-next-custome:not(.swiper-button-disabled):hover,
+  .swiper-button-prev-custome:not(.swiper-button-disabled):hover {
+    @apply hover:bg-gray-300 dark:hover:bg-white dark:hover:text-zinc-700;
+  }
+
+  /* Services Section */
+  .services-section {
+    @apply relative;
+  }
+
+  .services-section::before,
+  .services-section::after {
+    content: "";
+    @apply bg-gray-300 sm:hidden absolute block m-auto;
+  }
+
+  .services-section::before {
+    /* 120% height because the height of vertical line more than the content */
+    @apply w-px h-[120%] left-0 right-0;
+  }
+
+  .services-section::after {
+    @apply h-px w-full top-0 bottom-0;
+  }
+}
+
+@layer utilities {
+  /* بعدا توی پروژه بگرد و به جای ۳ تا پراپرتی زیر این کلاس رو بده تا کدها خوانا تر و بهتر بشه */
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .ltr-text {
+    direction: ltr;
+    text-align: left;
+  }
+}
